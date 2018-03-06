@@ -52,6 +52,64 @@ namespace BinarySearchTreeProject
             }
         }
 
+        public string Search(int value)
+        {
+            string output = "";
+            Node currentNode = root;
+            if (root == null)
+            {
+                output = "Binary Search Tree is empty.";
+            }
+            else if (root.Value == value)
+            {
+                output = "At the root.";
+            }
+            else
+            {
+                while (currentNode.Right != null || currentNode.Left != null)
+                {
+                    if (currentNode.Value == value)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        if (value > currentNode.Value)
+                        {
+                            if (currentNode.Right != null)
+                            {
+                                currentNode = currentNode.Right;
+                                output += "Right. ";
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (currentNode.Left != null)
+                            {
+                                currentNode = currentNode.Left;
+                                output += "Left. ";
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (currentNode.Value != value)
+            {
+                output = "Not found.";
+            }
+
+            return output;
+        }
+
         private Node CheckRightOrLeft(int value, Node currentNode)
         {
             if (value > currentNode.Value )
