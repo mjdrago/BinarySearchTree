@@ -20,7 +20,47 @@ namespace BinarySearchTreeProject
             }
             else
             {
+                Node currentNode = root;
+                while (currentNode.Right != null || currentNode.Left != null)
+                {
+                    if (currentNode.Value == value)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Node nextNode = CheckRightOrLeft(value, currentNode);
+                        if (nextNode!=null)
+                        {
+                            currentNode = nextNode;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+                if (value > currentNode.Value)
+                {
+                    currentNode.Right = nodeToAdd;
+                }
+                else if (value < currentNode.Value)
+                {
+                    currentNode.Left = nodeToAdd;
+                }
+                
+            }
+        }
 
+        private Node CheckRightOrLeft(int value, Node currentNode)
+        {
+            if (value > currentNode.Value )
+            {
+                return currentNode.Right;
+            }
+            else
+            {
+                return currentNode.Left;
             }
         }
     }
